@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monaco Editor Dark Grey Theme</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    #editor {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs/loader.js"></script>
+  <script>
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs' }});
+    require(['vs/editor/editor.main'], function() {
+      monaco.editor.defineTheme('darkGreyTheme', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [
+          { token: 'comment', foreground: '808080' }, // Grey
+          { token: 'keyword', foreground: '569CD6' }, // Blue
+          { token: 'string', foreground: 'CE9178' }, // Orange
+          { token: 'number', foreground: 'B5CEA8' }, // Green
+          { token: 'type', foreground: '3DC9B0' }, // Cyan
+        ],
+        colors: {
+          'editor.background': '#1E1E1E',
+          'editor.foreground': '#D4D4D4',
+          'editorLineNumber.foreground': '#858585',
+          'editor.lineHighlightBackground': '#383838',
+          'editor.selectionBackground': '#ADD6FF26',
+          'editorCursor.foreground': '#FFFFFF',
+          'editorWhitespace.foreground': '#3B3A32'
+        }
+      });
+      var editor = monaco.editor.create(document.getElementById('editor'), {
+        theme: 'darkGreyTheme',
+        language: 'javascript',
+        automaticLayout: true
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="editor"></div>
+</body>
+</html>
